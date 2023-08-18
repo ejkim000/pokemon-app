@@ -1,6 +1,6 @@
 import React from "react";
 
-function Index({ pokemon }) {
+function Index({ pokemons }) {
   const myStyle = {
     color: "#ffffff",
     backgroundColor: "orange",
@@ -10,8 +10,8 @@ function Index({ pokemon }) {
     <div>
         <h1 style={myStyle}>See All The Pokemon!</h1>
         <ul>
-            { pokemon.map((item, i) => {
-                const firstUpper = item.name.charAt(0).toUpperCase() + item.name.slice(1);
+            { pokemons.map((pokemon, i) => {
+                const firstUpper = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
                 return <li key={i}><a href={`pokemon/${i}`}>{firstUpper}</a></li>
             })}
             
