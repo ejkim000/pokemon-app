@@ -12,7 +12,7 @@ function Index({ pokemon }) {
         <ul>
             { pokemon.map((item, i) => {
                 const firstUpper = item.name.charAt(0).toUpperCase() + item.name.slice(1);
-                return <li>{firstUpper}</li>
+                return <li key={i}><a href={`pokemon/${i}`}>{firstUpper}</a></li>
             })}
             
         </ul>
