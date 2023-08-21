@@ -26,8 +26,10 @@ function Index({ pokemons }) {
                 const firstUpper = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
                 return <li key={i}><a href={`pokemon/${i}`}>{firstUpper}</a></li>
             })}
-            
+            <li><br /><br /><a href="/pokemon/new">Add New Pokemon</a></li>
         </ul>
+        
+        
     </div>
   
   );
