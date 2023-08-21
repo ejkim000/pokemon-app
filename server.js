@@ -8,11 +8,11 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
-// MIDDLEWARE
-app.use((req, res, next) => {
-    console.log('I run for all routes!')
-    next();
-});
+// // MIDDLEWARE
+// app.use((req, res, next) => {
+//     console.log('I run for all routes!')
+//     next();
+// });
 
 // this allows the body of post request
 app.use(express.urlencoded({extended:false})); // for the form submit
