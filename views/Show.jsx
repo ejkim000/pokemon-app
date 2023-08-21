@@ -17,7 +17,7 @@ function Show({ pokemon }) {
   };
   
   const firstUpper = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-  const pokemonImg = pokemon.img + ".jpg";
+  const pokemonImg = pokemon.img.toLowerCase() + ".jpg";
 
   return (
     <div>
