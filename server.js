@@ -48,13 +48,14 @@ app.get('/pokemon/new', (req,res) => {
 })
 
 // create
-app.post('/pokemon', (req, res) => {
+app.post('/pokemon', async (req, res) => {
+    const name = req.body.name;
     const newPokemon = {
-        name: req.body.name, 
-        img: "http://img.pokemondb.net/artwork/" + req.body.name
+        name: name.charAt(0).toUpperCase() + name.slice(1), 
+        img: "http://img.pokemondb.net/artwork/" + name.toLowerCase() + ".jpg"
     }
+    await Pokemon.create(newPokemon);
 
-    pokemons.push(newPokemon);
     res.redirect('/pokemon');
 })
 
