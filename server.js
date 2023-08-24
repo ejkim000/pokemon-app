@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const PORT = 3001;
-// const pokemons = require('./models/pokemon');
 
 // SETTING UP VIEW ENGINE
 app.set('views', __dirname + '/views');
@@ -28,15 +27,16 @@ mongoose.connect(mongoURI, {
 });
 
 
-
 // ROUTES
+// root
 app.get('/', (req, res) => {
     res.redirect('/pokemon');
 })
 
 // Pokemon list
-app.get('/pokemon', (req, res) => {
-    // res.send(pokemon)
+app.get('/pokemon', async (req, res) => {
+    const pokemons = await Pokemon.find({});
+    console.log(pokemons);
     res.render('Index', {
         pokemons: pokemons
     })
