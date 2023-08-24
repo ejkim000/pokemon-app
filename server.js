@@ -1,6 +1,7 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 const pokemons = require('./models/pokemon');
 
 // SETTING UP VIEW ENGINE
@@ -20,7 +21,10 @@ app.use(express.urlencoded({extended:false})); // for the form submit
 
 // ROUTES
 app.get('/', (req, res) => {
-    res.send('<h1>Welcome to the Pokemon App!</h1>')
+    res.send(`
+    <h1>Welcome to the Pokemon App!</h1>
+    <a href="/pokemon">See All The Pokemon!</a>
+    `)
 })
 
 // all list
