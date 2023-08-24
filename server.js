@@ -54,17 +54,30 @@ app.post('/pokemon', async (req, res) => {
         name: name.charAt(0).toUpperCase() + name.slice(1), 
         img: "http://img.pokemondb.net/artwork/" + name.toLowerCase() + ".jpg"
     }
-    await Pokemon.create(newPokemon);
+    await Pokemon.create(newPokemon)
+    .then(pokemon => {
+        console.log(pokemon)
+    }).catch(error => {
+        console.log(error)
+    })
 
     res.redirect('/pokemon');
 })
 
 // detail
-app.get('/pokemon/:id', (req,res) => {
-    // res.send(req.params.id)
-    res.render('Show', {
-        pokemon: pokemons[req.params.id]
+app.get('/pokemon/:id', async (req,res) => {
+    await Pokemon.findById(req.params.id)
+    .then(pokemon1 => {
+        console.log(`pokemon1 : ${pokemon1}`)
+
+        res.render('Show', {
+            pokemon: pokemon1
+        }) 
+
+    }).catch(error => {
+        console.log(error)
     })
+
 })
 
 

@@ -16,15 +16,12 @@ function Show({ pokemon }) {
     padding: "20px",
   };
   
-  const firstUpper = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-  const pokemonImg = pokemon.img.toLowerCase() + ".jpg";
-
   return (
     <div>
       <h1 style={h1Style}>Gotta Catch 'Em All</h1>
       <div style={containerStyle}>
-        <h2>{firstUpper}</h2>
-        <img src={pokemonImg} alt={firstUpper} /> <br />
+        <h2>{pokemon.name}</h2>
+        <img src={pokemon.img} alt={pokemon.name} /> <br />
         <a href="/pokemon">Back</a>
       </div>
     </div>
