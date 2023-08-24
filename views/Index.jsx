@@ -23,7 +23,7 @@ function Index({ pokemons }) {
         <h1 style={h1Style}>See All The Pokemon!</h1>
         <ul style={ulStyle}>
             { pokemons && pokemons.map((pokemon) => {
-                return <li key={pokemon.id}><a href={`pokemon/${pokemon.id}`}>{pokemon.name}</a></li>
+                return <li key={pokemon.id}><a href={`pokemon/${pokemon.name}`}>{pokemon.name}</a></li>
             })}
             <li><br /><br /><a href="/pokemon/new">Add New Pokemon</a></li>
         </ul>

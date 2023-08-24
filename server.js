@@ -28,6 +28,7 @@ mongoose.connect(mongoURI, {
 
 
 // ROUTES
+
 // root
 app.get('/', (req, res) => {
     res.redirect('/pokemon');
@@ -42,12 +43,12 @@ app.get('/pokemon', async (req, res) => {
     })
 })
 
-// new
+// new page
 app.get('/pokemon/new', (req,res) => {
     res.render('New');
 })
 
-// create
+// create pokemon
 app.post('/pokemon', async (req, res) => {
     const name = req.body.name;
     const newPokemon = {
@@ -59,28 +60,27 @@ app.post('/pokemon', async (req, res) => {
         console.log(pokemon)
     }).catch(error => {
         console.log(error)
-    })
+    });
 
     res.redirect('/pokemon');
 })
 
-// detail
-app.get('/pokemon/:id', async (req,res) => {
-    await Pokemon.findById(req.params.id)
-    .then(pokemon1 => {
-        console.log(`pokemon1 : ${pokemon1}`)
+// show page
+app.get('/pokemon/:name', async (req,res) => {
+    await Pokemon.findOne({name: req.params.name})
+    .then(foundPokemon => {
 
         res.render('Show', {
-            pokemon: pokemon1
+            pokemon: foundPokemon
         }) 
 
     }).catch(error => {
         console.log(error)
-    })
+    });
+});
 
-})
 
-
+// RUN SERVER
 app.listen(PORT, () =>{
     console.log('Listening on port ', PORT);
 });
