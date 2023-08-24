@@ -17,7 +17,6 @@ const Pokemon = require('./models/pokemon');
 
 // MONGOOSE CONNECTION
 const mongoURI = process.env.MONGO_URI;
-const db = mongoose.connection;
 
 // CONNECT TO MONGODB
 mongoose.connect(mongoURI, {
@@ -28,7 +27,6 @@ mongoose.connect(mongoURI, {
 
 
 // ROUTES
-
 // root
 app.get('/', (req, res) => {
     res.redirect('/pokemon');
