@@ -2,32 +2,39 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const PORT = 3001;
-const pokemons = require('./models/pokemon');
+// const pokemons = require('./models/pokemon');
 
 // SETTING UP VIEW ENGINE
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
-// // MIDDLEWARE
-// app.use((req, res, next) => {
-//     console.log('I run for all routes!')
-//     next();
-// });
-
 // this allows the body of post request
 app.use(express.urlencoded({extended:false})); // for the form submit
+
+// SETUP MONGOOSE & MODEL
+const mongoose = require('mongoose');
+const Pokemon = require('./models/pokemon');
+
+// MONGOOSE CONNECTION
+const mongoURI = process.env.MONGO_URI;
+const db = mongoose.connection;
+
+// CONNECT TO MONGODB
+mongoose.connect(mongoURI, {
+  // GET RID OF ERRORS IN THE CONSOLE
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
 
 
 // ROUTES
 app.get('/', (req, res) => {
-    res.send(`
-    <h1>Welcome to the Pokemon App!</h1>
-    <a href="/pokemon">See All The Pokemon!</a>
-    `)
+    res.redirect('/pokemon');
 })
 
-// all list
+// Pokemon list
 app.get('/pokemon', (req, res) => {
     // res.send(pokemon)
     res.render('Index', {
