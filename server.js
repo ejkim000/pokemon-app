@@ -48,10 +48,10 @@ app.get('/pokemon/new', (req,res) => {
 
 // create pokemon
 app.post('/pokemon', async (req, res) => {
-    const name = req.body.name;
+    const name = req.body.name.toLowerCase();
     const newPokemon = {
         name: name.charAt(0).toUpperCase() + name.slice(1), 
-        img: "http://img.pokemondb.net/artwork/" + name.toLowerCase() + ".jpg"
+        img: "http://img.pokemondb.net/artwork/" + name + ".jpg"
     }
     await Pokemon.create(newPokemon)
     .then(pokemon => {
